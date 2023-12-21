@@ -1,0 +1,31 @@
+<!-- app/views/cars/show.html.erb -->
+
+<h1>Détails de la voiture</h1>
+
+<p><strong>Marque:</strong> <%= @car.brand %></p>
+<p><strong>Modèle:</strong> <%= @car.model %></p>
+<p><strong>Année de production:</strong> <%= @car.year_of_production %></p>
+<p><strong>Adresse:</strong> <%= @car.address %></p>
+<p><strong>Prix par jour:</strong> <%= @car.price_per_day %></p>
+
+<%= link_to 'Retour à la liste des voitures', cars_path %>
+
+<h2>Réserver cette voiture</h2>
+
+<%= simple_form_for([@car, @booking]) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :starts_at, mode: "range", input_html: { data: { behavior: 'flatpickr' } } %>
+    <%= f.input :ends_at, mode: "range", input_html: { data: { behavior: 'flatpickr' } } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Réserver la voiture' %>
+  </div>
+<% end %>
+
+
+<% flash.each do |key, value| %>
+  <div class="flash <%= key %>">
+    <%= value %>
+  </div>
+<% end %>
