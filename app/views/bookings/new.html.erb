@@ -1,0 +1,17 @@
+<h1>Réserver la voiture <%= @car.model %></h1>
+
+<%= form_with(model: [@car, @booking], local: true) do |form| %>
+  <div>
+    <%= form.label :starts_at %>
+    <%= form.date_field :starts_at %>
+  </div>
+
+  <div>
+    <%= form.label :ends_at %>
+    <%= form.date_field :ends_at %>
+  </div>
+
+  <div>
+    <%= form.submit 'Réserver la voiture' %>
+  </div>
+<% end %>

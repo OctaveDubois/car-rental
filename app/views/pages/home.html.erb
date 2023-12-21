@@ -1,2 +1,36 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= render 'shared/banner' %>
+
+
+
+<section class="container mt-4">
+    <div class="row">
+      <div class="col-md-12">
+<h3>Louez la voiture de vos rêves (ou de votre voisin) :</h3>
+<br><br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Des prix très attractifs</h4>
+        <i class="bi bi-clock icon"></i>
+        <p>Votre location sera assurée par AXA. Vous pouvez même ajouter des conducteurs additionnels sans frais supplémentaires.</p>
+      </div>
+      <div class="col-md-4">
+        <h4>Pas d’agence, pas d’attente</h4>
+        <i class="bi bi-hourglass icon"></i>
+        <p>Réservez une voiture près de chez vous instantanément, même à la dernière minute. Pas de file d'attente. Pas de paperasse.</p>
+      </div>
+      <div class="col-md-4">
+        <h4>Déverrouillez la voiture avec l’application</h4>
+        <i class="bi bi-unlock icon"></i>
+        <p>3 clics et c’est parti !</p>
+      </div>
+    </div>
+  </section>
+<div class="container pt-5 position-relative">
+  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <%= link_to "Découvrir les voitures disponibles" , cars_path, class: "btn btn-primary me-md-2 mb-2 text-decoration-none text-white" %>
+  </div>
+
+  <br><br><br><br>
