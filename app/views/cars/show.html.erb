@@ -1,14 +1,26 @@
-<!-- app/views/cars/show.html.erb -->
+<!-- banner + image de la voiture -->
 
-<h1>Détails de la voiture</h1>
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="<%= image_path('banner.png') %>" class="img-fluid w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1><%= @car.model %></h1>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p><strong>Marque:</strong> <%= @car.brand %></p>
-<p><strong>Modèle:</strong> <%= @car.model %></p>
-<p><strong>Année de production:</strong> <%= @car.year_of_production %></p>
-<p><strong>Adresse:</strong> <%= @car.address %></p>
-<p><strong>Prix par jour:</strong> <%= @car.price_per_day %></p>
+<div class="container pt-5 position-relative">
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<%= link_to raw('<i class="fa-solid fa-arrow-rotate-left"></i> Retour à la liste des voitures'), :back, class: 'btn btn-secondary me-md-2' %>
+</div>
+<h1><%= @car.model %>, modèle <%= @car.brand %> (<%= @car.year_of_production %>) </h1>
+<p><strong>Prix :</strong> <%= @car.price_per_day %>€ / jour</p>
+<p><strong>Adresse :</strong> <%= @car.address %></p>
+<p><strong>Loué par :</strong> <%= @car.user.email %></p>
+<hr>
 
-<%= link_to 'Retour à la liste des voitures', cars_path %>
 
 <h2>Réserver cette voiture</h2>
 
@@ -29,3 +41,5 @@
     <%= value %>
   </div>
 <% end %>
+
+</div>

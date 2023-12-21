@@ -1,10 +1,32 @@
 
-<h1>Liste de voitures</h1>
+<%= render 'shared/carroussel' %>
 
-<ul>
-  <% @cars.each do |car| %>
-    <li>
-      <%= link_to car.model, car_path(car) %>
-    </li>
-  <% end %>
-</ul>
+<div class="container pt-5 position-relative">
+<h1 class="mb-4">Les voitures disponibles :</h1>
+  <%# --------------------------------------------- cards ------------------- %>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+     <% @cars.each do |car| %>
+    <div class="col">
+      <%= link_to car_path(car), class: "text-decoration-none text-dark" do %>
+      <div class="card h-100 d-flex flex-column">
+        <img src="<%= image_path('voiture.png') %>" class="card-img-top img-fluid custom-card-img" alt="...">
+        <div class="card-body d-flex flex-column">
+          <h4 class="card-title flex-grow-1">
+            <%= car.model %>
+            <span class="small">(<%= car.year_of_production %>)</span>
+          </h4>
+          <p><strong>Marque :</strong> <%= car.brand %></p>
+          <p><strong>Adresse :</strong> <%= car.address %></p>
+          <h6 class="text-center"><strong><%= car.price_per_day %> </strong>€ /jour</h6>
+          <%= link_to car_path(car), class: "btn btn-secondary mt-auto" do %>
+          <i class="fas fa-plus"></i> Voir plus de détails
+          <% end %>
+
+
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
