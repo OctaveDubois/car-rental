@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <%#---------------- LOGO A GAUCHE ---------------------------------------- %>
-    <a class="navbar-brand" href="/cars">
+    <a class="navbar-brand" href="/">
       <img
         src="<%= image_path('logo.png') %>"
         alt="" width="60" height="50">
@@ -18,28 +18,37 @@
         </li>
         <%#---------------- Dropdown + voitures ---------------------------- %>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Voir toutes mes voitures
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <% Car.all.each do |car| %>
-            <li><a class="dropdown-item" href="/cars/<%= car.brand %>"></a><%= car.brand %></li>
-            <% end %>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+     aria-expanded="false">
+    Les voitures les plus loués :
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <% Car.select(:brand).distinct.limit(5).each do |car| %>
+      <li class="p-2"><a class="dropdown-item" href="/cars/<%= car.brand %>"><%= car.brand %></a></li>
+    <% end %>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Créer une nouvelle reservation</a></li>
+            <li><a class="dropdown-item" href="/cars"> Voir toutes les voitures </a></li>
           </ul>
         </li>
       </ul>
-      <%#---------------- Search ---------------------------- %>
-      <form class="d-flex">
-        <%#---------------- Ce que je veux ---------------------------------------- %>
+        <%#---------------- Mon compte ---------------------------------------- %>
+        <form class="d-flex">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"> Se connecter</a>
+          <li class="nav-item dropdown">
+
+
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+     aria-expanded="false">
+     <% if user_signed_in? %>
+    <%= current_user.email %>
+    <% else %>
+    <%= link_to "Me connecter", new_user_session_path, class: "nav-link" %>
+    <% end %>
+  </a>
+<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+<%= link_to "Me déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+</div>
           </li>
         </ul>
       </form>

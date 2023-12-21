@@ -11,8 +11,10 @@
   </div>
 </div>
 
-<div class="container pt-5 position-relative">
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<div class="bg-white">
+
+<div class="container pt-5 position-relative p-5 ">
+<div class="d-grid gap-2 d-md-flex justify-content-md-end ">
 <%= link_to raw('<i class="fa-solid fa-arrow-rotate-left"></i> Retour à la liste des voitures'), :back, class: 'btn btn-secondary me-md-2' %>
 </div>
 <h1><%= @car.model %>, modèle <%= @car.brand %> (<%= @car.year_of_production %>) </h1>
@@ -21,25 +23,34 @@
 <p><strong>Loué par :</strong> <%= @car.user.email %></p>
 <hr>
 
-
+<div class="col-md-5">
+<div class="border p-5 rounded">
 <h2>Réserver cette voiture</h2>
 
+
 <%= simple_form_for([@car, @booking]) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :starts_at, mode: "range", input_html: { data: { behavior: 'flatpickr' } } %>
-    <%= f.input :ends_at, mode: "range", input_html: { data: { behavior: 'flatpickr' } } %>
-  </div>
+
+<%= f.input :starts_at,
+placeholder: "Ajouter la date de départ voulue",
+            label: "Début de la location",
+            dateFormat: "d-m-Y",
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+
+<%= f.input :ends_at,
+placeholder: "Ajouter la date de fin voulue",
+            label: "Fin de la location",
+            dateFormat: "d-m-Y",
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+
 
   <div class="form-actions">
-    <%= f.button :submit, 'Réserver la voiture' %>
+    <%= f.button :submit, 'Réserver la voiture', class:"btn btn-primary mt-3" %>
   </div>
 <% end %>
-
-
-<% flash.each do |key, value| %>
-  <div class="flash <%= key %>">
-    <%= value %>
+<br><br><br><br>
   </div>
-<% end %>
-
+</div>
+</div>
 </div>

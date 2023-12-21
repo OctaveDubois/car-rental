@@ -1,25 +1,61 @@
-<h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<section class="vh-100" style="background-color: #F2C572;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://plus.unsplash.com/premium_photo-1677591655703-e6f11ffdb1cf?q=80&w=1285&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                  <%= image_tag "logo.png", size: "60x50" %>
+                    <span class="h1 fw-bold p-3 mb-0">Créer un compte</span>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                   <%= f.input :email,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <%= f.input :password,
+                    label: "Mot de passe",
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
+                  </div>
+
+<div class="form-outline mb-4">
+     <%= f.input :password_confirmation,
+     label: "Confirmation du mot de passe",
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-  </div>
+                </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+                  <div class="pt-1 mb-4">
+                  <%= f.button :submit, "Se connecter", class: "btn btn-dark btn-lg btn-block" %>
+                  </div>
+
+                  <br><a href="#!" class="small text-muted">Termes d'utilisation.</a>
+                  <a href="#!" class="small text-muted">Politique de confidentialité</a>
+                <% end %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
